@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammed Shibili VT – Electronics Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --navy: #0a0a0a;
+  --navy-2: #111111;
+  --navy-3: #1a1a1a;
+  --blue: #ffffff;
+  --blue-bright: #ffffff;
+  --blue-glow: rgba(255,255,255,0.08);
+  --cyan: #cccccc;
+  --white: #f0f0f0;
+  --muted: #888888;
+  --card: #161616;
+  --border: rgba(255,255,255,0.12);
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--navy);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 300;
+  overflow-x: hidden;
+  line-height: 1.75;
+}
+body::before {
+  content:'';
+  position:fixed; inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none; z-index:0;
+}
+
+/* NAV */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; justify-content:space-between; align-items:center;
+  padding:1rem 5vw;
+  background:rgba(6,13,31,0.9);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo { font-family:var(--font-display); font-weight:800; font-size:1.1rem; color:var(--white); letter-spacing:0.04em; }
+.nav-logo span { color:var(--blue-bright); }
+.nav-links { display:flex; gap:1.6rem; list-style:none; }
+.nav-links a { color:var(--muted); text-decoration:none; font-size:0.8rem; font-weight:400; letter-spacing:0.08em; text-transform:uppercase; transition:color 0.2s; }
+.nav-links a:hover { color:var(--blue-bright); }
+.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:4px; }
+.hamburger span { width:24px; height:2px; background:var(--white); border-radius:2px; transition:all 0.3s; }
+
+/* HERO */
+#hero {
+  position:relative; min-height:100vh;
+  display:flex; align-items:center;
+  padding:100px 5vw 5rem;
+  overflow:hidden;
+}
+.hero-orb { position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none; }
+.hero-orb-1 { width:500px; height:500px; background:radial-gradient(circle,rgba(255,255,255,0.07) 0%,transparent 70%); top:-120px; right:-80px; animation:pulse 6s ease-in-out infinite; }
+.hero-orb-2 { width:320px; height:320px; background:radial-gradient(circle,rgba(255,255,255,0.04) 0%,transparent 70%); bottom:80px; left:-60px; animation:pulse 8s ease-in-out infinite reverse; }
+@keyframes pulse { 0%,100%{transform:scale(1);opacity:1;} 50%{transform:scale(1.1);opacity:0.7;} }
+.hero-content { position:relative; z-index:1; max-width:740px; }
+.hero-eyebrow { display:inline-flex; align-items:center; gap:0.5rem; font-size:0.75rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--blue-bright); margin-bottom:1.2rem; }
+.hero-eyebrow::before { content:''; width:26px; height:1px; background:var(--blue-bright); }
+.hero-name { font-family:var(--font-display); font-size:clamp(2rem,8vw,5rem); font-weight:800; line-height:1.06; letter-spacing:-0.02em; margin-bottom:1rem; }
+.hero-name .accent { color:var(--blue-bright); }
+.hero-tagline { font-size:clamp(0.9rem,2.2vw,1.05rem); color:var(--muted); max-width:500px; margin-bottom:2.2rem; }
+.hero-cta { display:flex; gap:0.9rem; flex-wrap:wrap; }
+.btn { display:inline-flex; align-items:center; gap:0.5rem; padding:0.75rem 1.6rem; border-radius:4px; font-family:var(--font-body); font-size:0.88rem; font-weight:500; text-decoration:none; cursor:pointer; border:none; transition:all 0.25s; }
+.btn-primary { background:#ffffff; color:#0a0a0a; box-shadow:0 0 28px rgba(255,255,255,0.15); }
+.btn-primary:hover { background:#dddddd; box-shadow:0 0 44px rgba(255,255,255,0.25); transform:translateY(-2px); }
+.btn-outline { background:transparent; color:var(--white); border:1px solid var(--border); }
+.btn-outline:hover { border-color:#ffffff; color:#ffffff; transform:translateY(-2px); }
+.hero-scroll { position:absolute; bottom:2rem; left:5vw; display:flex; align-items:center; gap:0.7rem; font-size:0.72rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); }
+.scroll-line { width:36px; height:1px; background:var(--muted); }
+
+/* SECTIONS */
+section { position:relative; z-index:1; padding:5.5rem 5vw; }
+.section-label { display:inline-flex; align-items:center; gap:0.5rem; font-size:0.7rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--blue-bright); margin-bottom:0.7rem; }
+.section-label::before { content:''; width:18px; height:1px; background:var(--blue-bright); }
+.section-title { font-family:var(--font-display); font-size:clamp(1.7rem,4vw,2.6rem); font-weight:700; letter-spacing:-0.02em; margin-bottom:3rem; line-height:1.15; }
+
+/* ABOUT */
+#about { background:var(--navy-2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.about-text { max-width: 780px; }
+.about-text p { color:var(--muted); margin-bottom:1.2rem; font-size:0.95rem; }
+.traits { display:flex; flex-wrap:wrap; gap:0.55rem; margin-top:1.6rem; }
+.trait { background:var(--blue-glow); border:1px solid var(--border); border-radius:3px; padding:0.3rem 0.8rem; font-size:0.78rem; color:var(--white); letter-spacing:0.05em; }
+
+/* SKILLS */
+.skills-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.8rem; }
+.skill-category { background:var(--card); border:1px solid var(--border); border-radius:6px; padding:1.8rem; transition:border-color 0.3s,transform 0.3s; }
+.skill-category:hover { border-color:rgba(59,130,246,0.4); transform:translateY(-4px); }
+.skill-cat-title { font-family:var(--font-display); font-size:0.82rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--blue-bright); margin-bottom:1.3rem; display:flex; align-items:center; gap:0.5rem; }
+.skill-bar-item { margin-bottom:1rem; }
+.skill-bar-label { display:flex; justify-content:space-between; font-size:0.82rem; color:var(--white); margin-bottom:0.4rem; }
+.skill-bar-label span:last-child { color:var(--muted); }
+.skill-bar-track { height:4px; background:rgba(255,255,255,0.07); border-radius:2px; overflow:hidden; }
+.skill-bar-fill { height:100%; background:linear-gradient(90deg,#ffffff,#aaaaaa); border-radius:2px; width:0%; transition:width 1.3s cubic-bezier(0.4,0,0.2,1); }
+
+/* PROJECTS */
+#projects { background:var(--navy-2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.projects-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.6rem; }
+.project-card { background:var(--card); border:1px solid var(--border); border-radius:6px; padding:1.8rem; display:flex; flex-direction:column; gap:0.9rem; transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s; position:relative; overflow:hidden; }
+.project-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,#ffffff,#aaaaaa); transform:scaleX(0); transform-origin:left; transition:transform 0.4s; }
+.project-card:hover { border-color:rgba(59,130,246,0.3); transform:translateY(-5px); box-shadow:0 20px 60px rgba(0,0,0,0.3); }
+.project-card:hover::before { transform:scaleX(1); }
+.project-number { font-family:var(--font-display); font-size:2.2rem; font-weight:800; color:rgba(37,99,235,0.14); line-height:1; letter-spacing:-0.04em; }
+.project-title { font-family:var(--font-display); font-size:1.08rem; font-weight:700; color:var(--white); }
+.project-desc { font-size:0.86rem; color:var(--muted); line-height:1.78; flex:1; }
+.project-tags { display:flex; flex-wrap:wrap; gap:0.4rem; }
+.project-tag { font-size:0.7rem; padding:0.2rem 0.55rem; background:rgba(37,99,235,0.12); border:1px solid rgba(37,99,235,0.22); border-radius:2px; color:var(--blue-bright); letter-spacing:0.05em; }
+.project-link { display:inline-flex; align-items:center; gap:0.4rem; font-size:0.82rem; color:var(--blue-bright); text-decoration:none; font-weight:500; transition:gap 0.2s; }
+.project-link:hover { gap:0.7rem; }
+
+/* CERTIFICATIONS */
+#certifications { background:var(--navy); border-bottom:1px solid var(--border); }
+.cert-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.4rem; }
+.cert-card { background:var(--card); border:1px solid var(--border); border-radius:6px; padding:1.6rem; display:flex; gap:1.1rem; align-items:flex-start; transition:border-color 0.3s,transform 0.3s; }
+.cert-card:hover { border-color:rgba(59,130,246,0.4); transform:translateY(-3px); }
+.cert-icon { width:44px; height:44px; flex-shrink:0; background:var(--blue-glow); border:1px solid var(--border); border-radius:8px; display:flex; align-items:center; justify-content:center; color:var(--blue-bright); font-size:1.15rem; }
+.cert-title { font-family:var(--font-display); font-size:0.92rem; font-weight:700; margin-bottom:0.35rem; line-height:1.35; }
+.cert-desc { font-size:0.8rem; color:var(--muted); line-height:1.65; }
+
+/* TIMELINE */
+#experience { background:var(--navy-2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.timeline { position:relative; padding-left:2rem; }
+.timeline::before { content:''; position:absolute; left:0; top:0; bottom:0; width:1px; background:var(--border); }
+.timeline-item { position:relative; margin-bottom:2.8rem; opacity:1; transform:translateX(0); transition:opacity 0.6s,transform 0.6s; }
+.timeline-item.visible { opacity:1; transform:translateX(0); }
+.timeline-dot { position:absolute; left:-2.35rem; top:0.4rem; width:10px; height:10px; background:#ffffff; border-radius:50%; box-shadow:0 0 12px rgba(255,255,255,0.5); }
+.timeline-badge { display:inline-block; font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--blue-bright); background:rgba(37,99,235,0.1); border:1px solid rgba(37,99,235,0.2); border-radius:2px; padding:0.15rem 0.5rem; margin-bottom:0.5rem; }
+.timeline-title { font-family:var(--font-display); font-size:1rem; font-weight:700; margin-bottom:0.2rem; }
+.timeline-sub { font-size:0.83rem; color:var(--muted); margin-bottom:0.6rem; }
+.timeline-desc { font-size:0.86rem; color:var(--muted); line-height:1.8; }
+
+/* CONTACT */
+#contact { background:var(--navy); }
+.contact-inner { max-width:680px; margin:0 auto; text-align:center; }
+.contact-sub { color:var(--muted); margin-bottom:2.8rem; font-size:0.96rem; }
+.contact-cards { display:flex; justify-content:center; gap:1.1rem; flex-wrap:wrap; margin-bottom:2.5rem; }
+.contact-card { background:var(--card); border:1px solid var(--border); border-radius:6px; padding:1.4rem 1.6rem; text-decoration:none; color:var(--white); display:flex; flex-direction:column; align-items:center; gap:0.6rem; min-width:130px; transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s; }
+.contact-card:hover { border-color:var(--blue-bright); transform:translateY(-4px); box-shadow:0 12px 40px rgba(37,99,235,0.22); }
+.contact-card i, .contact-card .linkedin-icon { font-size:1.5rem; color:var(--blue-bright); }
+.contact-card strong { font-size:0.88rem; }
+.contact-card span { font-size:0.75rem; color:var(--muted); word-break:break-all; }
+.contact-email-btn { display:inline-flex; align-items:center; gap:0.6rem; background:#ffffff; color:#0a0a0a; padding:0.85rem 2rem; border-radius:4px; text-decoration:none; font-size:0.9rem; font-weight:500; transition:all 0.25s; box-shadow:0 0 30px rgba(255,255,255,0.1); }
+.contact-email-btn:hover { background:#dddddd; box-shadow:0 0 50px rgba(255,255,255,0.2); transform:translateY(-2px); }
+
+.contact-card .linkedin-icon {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:30px; height:30px;
+  background:#fff; color:#0a0a0a;
+  border-radius:4px; font-weight:800;
+  font-family:var(--font-display); font-size:1rem;
+  line-height:1;
+}
+footer { text-align:center; padding:1.8rem; font-size:0.76rem; color:var(--muted); border-top:1px solid var(--border); position:relative; z-index:1; }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from{opacity:0;transform:translateY(22px);} to{opacity:1;transform:translateY(0);} }
+.anim-1{animation:fadeUp 0.7s 0.1s both;}
+.anim-2{animation:fadeUp 0.7s 0.25s both;}
+.anim-3{animation:fadeUp 0.7s 0.4s both;}
+.anim-4{animation:fadeUp 0.7s 0.55s both;}
+.anim-5{animation:fadeUp 0.7s 0.7s both;}
+
+.reveal { opacity:1; transform:translateY(0); transition:opacity 0.65s ease,transform 0.65s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .nav-links.open{ display:flex; flex-direction:column; position:fixed; inset:0; background:var(--navy); align-items:center; justify-content:center; gap:2.4rem; z-index:99; }
+  .nav-links.open a{font-size:1.15rem;}
+  .hero-cta{flex-direction:column; align-items:flex-start;}
+  .btn{max-width:220px;}
+  section{padding:4rem 5vw;}
+  .contact-cards{flex-direction:column; align-items:center;}
+  .contact-card{width:100%; max-width:340px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">MS<span>.</span>VT</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow anim-1">Electronics Engineer</div>
+    <h1 class="hero-name anim-2">Muhammed Shibili <span class="accent">VT</span></h1>
+    <p class="hero-tagline anim-3">Bridging hardware and intelligence — from PCB traces to embedded code, I build the systems that power tomorrow.</p>
+    <div class="hero-cta anim-4">
+      <a href="#projects" class="btn btn-primary">⚡ View Projects</a>
+      <a href="#contact" class="btn btn-outline">✉ Contact Me</a>
+    </div>
+  </div>
+  <div class="hero-scroll anim-5">
+    <div class="scroll-line"></div>
+    Scroll to explore
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-text reveal">
+      <div class="section-label">About Me</div>
+      <h2 class="section-title">Passionate about<br>circuits & code.</h2>
+      <p>I'm an Electronics Engineering student with strong ambition. I have basic knowledge of programming languages such as Python, C, and Assembly. I also have experience in PCB design and circuit diagram assembly, and I'm interested in programming and PCB layout design.</p>
+      <p>Currently pursuing a Diploma in Electronics Engineering at Polytechnic College, I've built hands-on experience through IoT internships, Arduino and Raspberry Pi projects, and hardware-software integration.</p>
+      <div class="traits">
+        <span class="trait">Problem Solver</span>
+        <span class="trait">Hardware Enthusiast</span>
+        <span class="trait">Fast Learner</span>
+        <span class="trait">Detail Oriented</span>
+        <span class="trait">IoT Explorer</span>
+      </div>
+    </div>
+</section>
+<section id="skills">
+  <div class="section-label reveal">Technical Skills</div>
+  <h2 class="section-title reveal">What I work with</h2>
+  <div class="skills-grid">
+
+    <div class="skill-category reveal">
+      <div class="skill-cat-title">🔧 Hardware & Design</div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>PCB Design</span><span>70%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="70"></div></div>
+      </div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>Circuit Diagram Assembly</span><span>75%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div>
+      </div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>Hardware Assembly</span><span>80%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+      </div>
+    </div>
+
+    <div class="skill-category reveal">
+      <div class="skill-cat-title">📡 Embedded & IoT</div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>Arduino</span><span>80%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+      </div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>Raspberry Pi</span><span>70%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="70"></div></div>
+      </div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>Embedded Systems</span><span>65%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="65"></div></div>
+      </div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>Basic IoT</span><span>65%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="65"></div></div>
+      </div>
+    </div>
+
+    <div class="skill-category reveal">
+      <div class="skill-cat-title">💻 Programming</div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>Python</span><span>70%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="70"></div></div>
+      </div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>C Programming</span><span>65%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="65"></div></div>
+      </div>
+      <div class="skill-bar-item">
+        <div class="skill-bar-label"><span>Assembly Language</span><span>55%</span></div>
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="55"></div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label reveal">Portfolio</div>
+  <h2 class="section-title reveal">Featured Projects</h2>
+  <div class="projects-grid">
+
+    <div class="project-card reveal">
+      <div class="project-number">01</div>
+      <div class="project-title">Web-Controlled Motor Car</div>
+      <p class="project-desc">Built a motor car controlled via a web interface using Raspberry Pi, Arduino, and IoT protocols. Demonstrates real-time hardware control over a local network with a browser-based dashboard.</p>
+      <div class="project-tags">
+        <span class="project-tag">Raspberry Pi</span>
+        <span class="project-tag">Arduino</span>
+        <span class="project-tag">IoT</span>
+        <span class="project-tag">Python</span>
+        <span class="project-tag">Web Interface</span>
+      </div>
+      <a href="#" class="project-link">View Details →</a>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-number">02</div>
+      <div class="project-title">Sensor-Based Automation System</div>
+      <p class="project-desc">Designed and implemented a sensor-driven automation circuit using Arduino and environmental sensors for real-time monitoring and automated control — a core project from the IoT internship.</p>
+      <div class="project-tags">
+        <span class="project-tag">Arduino</span>
+        <span class="project-tag">Sensors</span>
+        <span class="project-tag">C</span>
+        <span class="project-tag">PCB Design</span>
+        <span class="project-tag">Automation</span>
+      </div>
+      <a href="#" class="project-link">View Details →</a>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-number">03</div>
+      <div class="project-title">PCB Layout Design</div>
+      <p class="project-desc">Designed custom PCB layouts for embedded circuit prototypes, focusing on signal integrity, optimal component placement, and manufacturing readiness using standard PCB design tools.</p>
+      <div class="project-tags">
+        <span class="project-tag">PCB Design</span>
+        <span class="project-tag">Circuit Analysis</span>
+        <span class="project-tag">Embedded Systems</span>
+        <span class="project-tag">Prototyping</span>
+      </div>
+      <a href="#" class="project-link">View Details →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label reveal">Achievements</div>
+  <h2 class="section-title reveal">Certifications</h2>
+  <div class="cert-grid">
+
+    <div class="cert-card reveal">
+      <div class="cert-icon">🏅</div>
+      <div>
+        <div class="cert-title">Internship Certificate — IoT &amp; Embedded Systems</div>
+        <p class="cert-desc">Awarded upon completion of internship covering Sensors, Arduino, Raspberry Pi, Programming, and IoT systems integration.</p>
+      </div>
+    </div>
+
+    <div class="cert-card reveal">
+      <div class="cert-icon">🤝</div>
+      <div>
+        <div class="cert-title">Volunteer Certificate — IEDC Tech Fest</div>
+        <p class="cert-desc">Recognised for helping manage event activities and surrounding arrangements at the IEDC (Innovation &amp; Entrepreneurship Development Cell) Tech Fest.</p>
+      </div>
+    </div>
+
+    <div class="cert-card reveal">
+      <div class="cert-icon">🧠</div>
+      <div>
+        <div class="cert-title">AI for Beginners Certificate</div>
+        <p class="cert-desc">Completed an online course on Artificial Intelligence basics, covering core ML concepts, algorithms, and practical AI applications.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE / EDUCATION -->
+<section id="experience">
+  <div class="section-label reveal">Background</div>
+  <h2 class="section-title reveal">Experience &amp; Education</h2>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <span class="timeline-badge">Education &middot; 2023 – Present</span>
+      <div class="timeline-title">Diploma in Electronics Engineering</div>
+      <div class="timeline-sub">Polytechnic College — Currently Pursuing</div>
+      <p class="timeline-desc">Studying core electronics principles including circuit theory, PCB design, embedded systems, microcontrollers, and digital electronics with hands-on lab experience.</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <span class="timeline-badge">Internship &middot; 2023</span>
+      <div class="timeline-title">IoT &amp; Embedded Systems Internship</div>
+      <div class="timeline-sub">Industrial Internship Program</div>
+      <p class="timeline-desc">Attended an internship focused on Sensors, Arduino, Raspberry Pi, Programming, and IoT. Worked on a project to develop a motor car controlled through a website. Gained practical knowledge of IoT systems, Arduino, Raspberry Pi, and programming. Learned the basic concepts of connecting hardware with web-based control systems.</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <span class="timeline-badge">Volunteer &middot; 2023</span>
+      <div class="timeline-title">IEDC Tech Fest — Volunteer</div>
+      <div class="timeline-sub">Innovation &amp; Entrepreneurship Development Cell</div>
+      <p class="timeline-desc">Volunteered at the IEDC Tech Fest, helping manage event activities and surrounding arrangements, contributing to the smooth execution of the technology festival.</p>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <span class="timeline-badge">Education &middot; 2022</span>
+      <div class="timeline-title">Higher Secondary — Biology Science</div>
+      <div class="timeline-sub">12th Standard — 79%</div>
+      <p class="timeline-desc">Completed higher secondary education in the Biology Science stream with 79% marks, building a strong foundation in science before transitioning to Electronics Engineering.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-label reveal" style="justify-content:center">Get In Touch</div>
+    <h2 class="section-title reveal">Let's build something<br>together.</h2>
+    <p class="contact-sub reveal">Whether it's a hardware project, an embedded system, or a collaboration — I'm always open to exciting opportunities.</p>
+    <div class="contact-cards reveal">
+      <a href="/cdn-cgi/l/email-protection#d0a3b8b9b2b9bcb9a6a4bda5b8b1bdbdb5b490b7bdb1b9bcfeb3bfbd" class="contact-card">
+        ✉
+        <strong>Email</strong>
+        <span><span class="__cf_email__" data-cfemail="691a01000b0005001f1d041c010804040c0d290e04080005470a0604">[email&#160;protected]</span></span>
+      </a>
+      <a href="https://www.linkedin.com/in/shibilivt" target="_blank" class="contact-card">
+        <span class="linkedin-icon">in</span>
+        <strong>LinkedIn</strong>
+        <span>linkedin.com/in/shibilivt</span>
+      </a>
+      <a href="tel:+918547759892" class="contact-card">
+        📞
+        <strong>Phone</strong>
+        <span>+91 85477 59892</span>
+      </a>
+    </div>
+    <a href="/cdn-cgi/l/email-protection#0a796263686366637c7e677f626b67676f6e4a6d676b636624696567" class="contact-email-btn reveal">
+      ✉ Send Me a Message
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>Designed &amp; built by Muhammed Shibili VT &nbsp;&middot;&nbsp; Electronics Engineer &nbsp;&middot;&nbsp; &copy; 2026</p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => navLinks.classList.remove('open'))
+  );
+
+  // Reveal + timeline observer
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal, .timeline-item').forEach(el => io.observe(el));
+
+  // Skill bars — trigger immediately on load too
+  function triggerSkillBars() {
+    document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+      bar.style.width = bar.dataset.width + '%';
+    });
+  }
+  window.addEventListener('load', () => setTimeout(triggerSkillBars, 300));
+
+  const skillIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+        skillIO.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.skill-category').forEach(el => skillIO.observe(el));
+
+  // FALLBACK — ensures everything shows even if observer doesn't fire
+  // (common when viewing local .html files on Android browsers)
+  setTimeout(() => {
+    document.querySelectorAll('.reveal, .timeline-item').forEach(el => el.classList.add('visible'));
+    document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+      bar.style.width = bar.dataset.width + '%';
+    });
+  }, 1000);
+
+  // Active nav on scroll
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let pos
